@@ -56,7 +56,7 @@
         <Card style="background:#f9fffd ;min-height:700px">
           <br>
           <br>
-          <center><Input search enter-button size="large" :style="{width : '500px'}" placeholder="Enter something..." /></center>
+          <center><Input search enter-button size="large" :style="{width : '500px'}" placeholder="" /></center>
           <br>
           <br>
           <br>
