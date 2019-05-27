@@ -13,7 +13,17 @@
         </div>
         <prince :is="currentTab"></prince>
       </Header>
-      <Footer>Footer</Footer>
+      <div id="white-footer">
+        <div id="white-div">
+          <p>-详情请咨询-</p>
+          <span>联系电话：15957135591 </span>
+          <span> 邮箱：SimonWYN@163.com</span>
+          <div id="mine">
+            <p>浙江工业大学计算机科学与技术学院、软件学院</p>
+            <p>计科1501班 王燕楠</p>
+          </div>
+        </div>
+      </div>
     </layout>
   </div>
 
@@ -27,7 +37,7 @@
         data(){
           return{
             headerbackgroundDiv:{
-              backgroundImage: 'url('+require('../assets/star.png')+')',
+              backgroundImage: 'url('+require('../assets/star.png')+')' ,
             },
             avatarUrl: require('../assets/avatar.png'),
             name: "Jack官方粉丝后援会",
@@ -53,7 +63,8 @@
 
 <style scoped>
 #Header{
-  background-color: white;
+  background: url("../assets/background.jpg");
+  background-size: 100%;
   height: 100%;
 }
 #header-background{
@@ -62,7 +73,7 @@
   margin: 10px auto 0 auto;
   text-align: center;
   /*背景自适应或者大小修改*/
-  /*background-size: 100%;*/
+  background-size: 100%;
   /*background-attachment: fixed;*/
 }
 #avatar{
@@ -89,6 +100,7 @@
   width: 60%;
   margin: 0 auto 0 auto;
   text-align: center;
+  background-color: white;
   border-left: 1px solid black;
   border-right: 1px solid black;
   border-bottom: 1px solid black;
@@ -106,5 +118,19 @@ a{
   font-family:"Hiragino Sans GB";
   color: black;
   font-weight: bold;
+}
+
+#white-footer{
+  height: 150px;
+  font-size: 14px;
+  font-family:"Hiragino Sans GB";
+  color: darkslategrey;
+  text-align: center;
+}
+#white-div{
+  margin-top: 20px;
+}
+#mine{
+  margin-top: 10px;
 }
 </style>
