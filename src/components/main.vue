@@ -43,7 +43,7 @@
           <div class="layout-nav">
             <MenuItem name="3">
               <Icon type="ios-globe" />
-              首页
+              <a href="http://localhost:8081/#/main">首页</a>
             </MenuItem>
             <MenuItem name="4">
               <Icon type="logo-octocat" />
@@ -56,33 +56,33 @@
         <Card style="background:#f9fffd ;min-height:700px">
           <br>
           <br>
-          <center><Input search enter-button size="large" :style="{width : '500px'}" placeholder="" /></center>
+          <center><Input search enter-button  size="large" :style="{width : '500px'}" @on-search="search($event)" placeholder="" /></center>
           <br>
           <br>
           <br>
 
           <div>
             <Divider />
-            <Carousel autoplay v-model="value2" autoplay-speed="5000" radius-dot="true" loop>
+            <Carousel autoplay  radius-dot="true" loop>
               <CarouselItem>
                 <Row :gutter="16">
                   <Col span="8">
                   <Card style="width:100%;height:300px">
                     <img class="img-responsive"  src="https://gss1.bdstatic.com/-vo3dSag_xI4khGkpoWK1HF6hhy/baike/h%3D452/sign=9d87a218b03eb1355bc7b6be941fa8cb/d50735fae6cd7b8983dcb473032442a7d8330e89.jpg">
                     <br>
-                    <center><h3>王俊凯</h3></center>
+                    <center><a href="http://localhost:8081/#/star?name=王俊凯" target="_blank">王俊凯</a></center>
                   </Card>
                   </Col>
                   <Col span="8">
                   <Card style="width:100%;height:300px">
                     <img class="img-responsive"  src="https://gss0.bdstatic.com/-4o3dSag_xI4khGkpoWK1HF6hhy/baike/h%3D452/sign=ac536930aa4bd1131bcdb63768aea488/1c950a7b02087bf46e17daaaf5d3572c10dfcffe.jpg">
-                    <center><h3>金秀贤</h3></center>
+                    <center><a href="http://localhost:8081/#/star?name=金秀贤" target="_blank">金秀贤</a></center>
                   </Card>
                   </Col>
                   <Col span="8">
                   <Card style="width:100%;height:300px">
                     <img class="img-responsive"  src="https://gss1.bdstatic.com/-vo3dSag_xI4khGkpoWK1HF6hhy/baike/h%3D452/sign=939771c9c6134954611ee961644f92dd/d31b0ef41bd5ad6e108cada28ccb39dbb6fd3c05.jpg">
-                    <center><h3>易烊千玺</h3></center>
+                    <center><a href="http://localhost:8081/#/star?name=易烊千玺" target="_blank">易烊千玺</a></center>
                   </Card>
                   </Col>
                 </Row>
@@ -93,19 +93,19 @@
                   <Card style="width:100%;height:300px">
                     <img class="img-responsive"  src="https://gss0.bdstatic.com/94o3dSag_xI4khGkpoWK1HF6hhy/baike/h%3D452/sign=34e70c29db1b0ef473e8995befc451a1/a8773912b31bb051683cf72f3f7adab44aede099.jpg">
                     <br>
-                    <center><h3>黄伟霆</h3></center>
+                    <center><a href="http://localhost:8081/#/star?name=黄伟霆" target="_blank">黄伟霆</a></center>
                   </Card>
                   </Col>
                   <Col span="8">
                   <Card style="width:100%;height:300px">
                     <img class="img-responsive"  src="https://gss2.bdstatic.com/-fo3dSag_xI4khGkpoWK1HF6hhy/baike/h%3D452/sign=304eec52cc134954611ee961644f92dd/d31b0ef41bd5ad6eb355303986cb39dbb7fd3cb0.jpg">
-                    <center><h3>黄子韬</h3></center>
+                    <center><a href="http://localhost:8081/#/star?name=黄子韬" target="_blank">黄子韬</a></center>
                   </Card>
                   </Col>
                   <Col span="8">
                   <Card style="width:100%;height:300px">
                     <img class="img-responsive"  src="https://gss3.bdstatic.com/-Po3dSag_xI4khGkpoWK1HF6hhy/baike/h%3D452/sign=ab9993cd229759ee555061ce80fa434e/b17eca8065380cd73240552da544ad3458828190.jpg">
-                    <center><h3>朱一龙</h3></center>
+                    <center><a href="http://localhost:8081/#/star?name=朱一龙" target="_blank">朱一龙</a></center>
                   </Card>
                   </Col>
                 </Row>
@@ -116,19 +116,19 @@
                   <Card style="width:100%;height:300px">
                     <img class="img-responsive"  src="https://gss1.bdstatic.com/-vo3dSag_xI4khGkpoWK1HF6hhy/baike/h%3D452/sign=11a33191db1b0ef473e8995befc551a1/a8773912b31bb0514d78ca973f7adab44aede035.jpg">
                     <br>
-                    <center><h3>陈乔恩</h3></center>
+                    <center><a href="http://localhost:8081/#/star?name=陈乔恩" target="_blank">陈乔恩</a></center>
                   </Card>
                   </Col>
                   <Col span="8">
                   <Card style="width:100%;height:300px">
                     <img class="img-responsive"  src="https://gss2.bdstatic.com/-fo3dSag_xI4khGkpoWK1HF6hhy/baike/h%3D452/sign=060798e5a14bd1131bcdb63768aea488/1c950a7b02087bf4c4432b7ffed3572c10dfcffd.jpg">
-                    <center><h3>马天宇</h3></center>
+                    <center><a href="http://localhost:8081/#/star?name=马天宇" target="_blank">马天宇</a></center>
                   </Card>
                   </Col>
                   <Col span="8">
                   <Card style="width:100%;height:300px">
                     <img class="img-responsive"  src="https://gss1.bdstatic.com/9vo3dSag_xI4khGkpoWK1HF6hhy/baike/h%3D452/sign=ff1901ff0133874483c52e79630ed937/203fb80e7bec54e73fec45b1b4389b504fc26a18.jpg">
-                    <center><h3>吴宣仪</h3></center>
+                    <center><a href="http://localhost:8081/#/star?name=吴宣仪" target="_blank">吴宣仪</a></center>
                   </Card>
                   </Col>
                 </Row>
@@ -144,6 +144,11 @@
 </template>
 <script>
   export default {
+    methods: {
+      search(event) {
+        this.$router.push({name: 'star',query:{ name: event}});
+      }
+    }
 
   }
 </script>
