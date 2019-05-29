@@ -34,6 +34,12 @@
     import information from './personalPageInf';
     export default {
         name: "personalPage",
+        created() {
+          var storage=window.localStorage;
+          this.name = storage.getItem("name");
+          this.avatarUrl = storage.getItem("avatarUrl");
+          this.signature = storage.getItem("signature");
+        },
         data(){
           return{
             headerbackgroundDiv:{

@@ -54,10 +54,10 @@
       <div style="height: 20px;width: 100%">
         <Row>
           <Col span="21">
-            <Avatar :src=item.avatar />{{item.name}}:{{item.context}}
+            <Avatar :src=item.avatar />{{item.name}}:{{item.contentText}}
           </Col>
           <Col span="3">
-            {{item.date}}
+            {{item.time}}
           </Col>
         </Row>
       </div>
@@ -68,7 +68,7 @@
         <Input v-model="commentText" type="textarea" :autosize="{minRows: 2,maxRows: 5}" placeholder=""></Input>
       </FormItem>
       <FormItem>
-        <Button type="primary">提交</Button>
+        <Button type="primary" @click="sendComment()">提交</Button>
       </FormItem>
     </Form>
   </div>
@@ -79,25 +79,45 @@
   export default {
       name: "star_main",
       created () {
+        this.init();
+      },
+      methods:{
+        init() {
+          axios.get('http://localhost:8080/getStar', {
+            params : {
+              "name" : this.$route.query.name
+            }
+          }).then((response) => {
+            var res = response.data;
+            console.log(res.url)
+            this.imageUrl = res.url;
+            this.starName = res.name;
+            this.introduce = res.introduce;
+            this.work = res.works;
+            var list = this.work.split(",");
+            this.workStr = "《" + list.join("》《") + "》";
+            this.commentObjects = res.commentList;
+            console.log(JSON.stringify(this.commentObjects))
+            this.commentCount = this.commentObjects.length;
+          }, error => {
 
-        axios.get('http://localhost:8080/getStar', {
-          params : {
-            "name" : this.$route.query.name
-          }
-        }).then((response) => {
-          var res = response.data;
-          console.log(res.url)
-          this.imageUrl = res.url;
-          this.starName = res.name;
-          this.introduce = res.introduce;
-          this.work = res.works;
-          var list = this.work.split(",");
-          this.workStr = "《" + list.join("》《") + "》";
-          this.commentObjects = res.commentList;
-          this.commentCount = this.commentObjects.length;
-        }, error => {
-
-        })
+          })
+        },
+        sendComment() {
+          var sta = window.localStorage;
+          var userName = sta.getItem("name");
+          let data = new FormData();
+          data.append("context",this.commentText);
+          data.append("userName",userName);
+          data.append("starName",this.$route.query.name);
+          axios.post('http://localhost:8080/comment', data, {headers:{
+              'Content-Type':'application/json;charset=utf-8'
+            }})
+            .then((response) => {
+            this.init();
+            this.commentText = "";
+          })
+        }
       },
       data() {
         return {
@@ -115,13 +135,13 @@
               {
                 name:"liwei222",
                 date:"2019-05-23 12:12:21",
-                context: "好看～～",
+                contentText: "好看～～",
                 avatar:"https://i.loli.net/2017/08/21/599a521472424.jpg"
               },
               {
                 name:"王燕楠",
                 date:"2019-05-23 12:12:21",
-                context: "超好看～～",
+                contentText: "超好看～～",
                 avatar:"https://i.loli.net/2017/08/21/599a521472424.jpg"
               }
             ]

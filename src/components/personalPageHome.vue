@@ -30,10 +30,24 @@
 </template>
 
 <script>
-    export default {
+  import axios from 'axios';
+
+  export default {
         name: "personalPageHome",
         created(){
-          this.showItemFun();
+          var storage=window.localStorage;
+          var name = storage.getItem("name");
+
+          axios.get('http://localhost:8080/getComments', {
+            params : {
+              "name" : name
+            }
+          }).then((response) => {
+            var res = response.data;
+            this.items = res;
+            this.showItemFun();
+          }, error =>{
+          })
         },
         data(){
           return{
@@ -77,12 +91,11 @@
                 isHeartChoose: 0,
                 heartCount: 520,
                 contentText: "呜呜呜，哥哥微博更新辣！",
-                contentPhotos:["../../static/photo/Jack全球粉丝后援会/20190520/0.png",
-                  "../../static/photo/Jack全球粉丝后援会/20190520/1.png"],
+                contentPhotos:"",
               }
             ],
             dataCount:0, //发帖总数
-            pageSize: 5,   //每一页的帖子数
+            pageSize: 10,   //每一页的帖子数
             showItems: []
           }
         },

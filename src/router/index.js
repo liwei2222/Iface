@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import main from '@/components/main'
 import star from '@/components/star_main'
+import login from '@/components/login'
 import personalPage from '@/components/personalPage'
 
 Vue.use(Router)
@@ -22,7 +23,11 @@ export default new Router({
       path: '/personalPage',
       name: '/personalPage',
       component: personalPage
+    },
+    {
+      path: '/login',
+      name: '/login',
+      component: login
     }
-
   ]
 })

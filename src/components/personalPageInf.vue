@@ -27,6 +27,13 @@
 
 <script>
   export default {
+    created() {
+      var storage=window.localStorage;
+      this.name = storage.getItem("name");
+      this.sex = storage.getItem("sex");
+      this.signature = storage.getItem("signature");
+      this.registerTime = storage.getItem("registerTime");
+    },
     name: "personalPageInf",
     data(){
       return{
