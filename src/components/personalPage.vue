@@ -1,6 +1,12 @@
 <template>
   <div class="layout">
     <layout>
+      <!--<Menu mode="horizontal" theme="light" active-name="1">-->
+        <!--<MenuItem name="1" style="margin-left: 100px">-->
+          <!--<Main Head style="">IFace</Main>-->
+        <!--</MenuItem>-->
+      <!--</Menu>-->
+
       <Header id="Header">
         <div :style="headerbackgroundDiv" id="header-background">
             <img v-bind:src="avatarUrl" id="avatar">
@@ -68,6 +74,16 @@
 </script>
 
 <style scoped>
+  #head{
+    border-left: 3px solid midnightblue;
+    border-top: 2px solid midnightblue;
+    border-right: 3px solid midnightblue;
+
+  }
+  #menu{
+    width: 100%;
+
+  }
 #Header{
   background: url("../assets/background.jpg");
   background-size: 100%;
