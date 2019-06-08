@@ -60,6 +60,12 @@
             {{item.time}}
           </Col>
         </Row>
+        <div v-for="contentPhoto in item.contentPhotos">
+          <img style="width: 150px;
+               height: 150px;
+               float: left;
+               margin: 10px 10px 0 0;"v-bind:src="contentPhoto"  id="content-photo" >
+        </div>
       </div>
       <Divider orientation="left"></Divider>
     </div>
@@ -69,6 +75,13 @@
       </FormItem>
       <FormItem>
         <Button type="primary" @click="sendComment()">提交</Button>
+          <Upload multiple ref="upload" :before-upload="handleUpload" :show-upload-list="false"
+                          :on-success="uploadSuccess" action="">
+            <Button  icon="ios-cloud-upload-outline">浏览</Button>
+          </Upload>
+          <div v-for="(item, index) in file">Upload file: {{ item.name }}
+            <a href="javascript:;" @click="delectFile(item.keyID)">X</a>
+          </div>
       </FormItem>
     </Form>
   </div>
@@ -103,6 +116,49 @@
 
           })
         },
+        handleUpload(file) { // 保存需要上传的文件
+          let keyID = Math.random().toString().substr(2);
+          file['keyID'] = keyID;
+          this.file.push(file);
+          this.uploadFile.push(file)
+          return false;
+        },
+        delectFile(keyID) { // 删除文件
+          this.file = this.file.filter(item => {
+            return item.keyID != keyID
+          })
+          this.uploadFile = this.uploadFile.filter(item => {
+            return item.keyID != keyID
+          })
+        },
+        upload() { // 上传文件
+          if (this.uploadFile.length === 0) {
+            this.$Message.error('未选择上传文件')
+            return false
+          }
+          var sta = window.localStorage;
+          var userName = sta.getItem("name");
+          let data = new FormData();
+          console.log(this.file)
+          data.append("context",this.commentText);
+          data.append("userName",userName);
+          data.append("starName",this.$route.query.name);
+          for(var j = 0; j < this.file.length; j++) {
+            data.append("files", this.file[j]);
+          }
+          axios.post('http://localhost:8080/uploadCommit', data, {headers:{
+              'Content-Type':'application/json;charset=utf-8'
+            }})
+            .then((response) => {
+              this.commentText = "";
+            })
+          this.file = [];
+        },
+        uploadSuccess(response, file, fileList) { // 文件上传回调 上传成功后删除待上传文件
+          console.log(response) // 后端返回数据
+          console.log(file) // 当前上传文件
+          console.log(fileList) // 整个input file 里的文件数组
+        },
         sendComment() {
           var sta = window.localStorage;
           var userName = sta.getItem("name");
@@ -117,10 +173,13 @@
             this.init();
             this.commentText = "";
           })
+          this.upload();
         }
       },
       data() {
         return {
+          file: [], // 总文件List
+          uploadFile: [],
           backgroundImage: 'background-image',
           imageUrl: "https://gss3.bdstatic.com/-Po3dSag_xI4khGkpoWK1HF6hhy/baike/h%3D452/sign=ab9993cd229759ee555061ce80fa434e/b17eca8065380cd73240552da544ad3458828190.jpg",
           starName: "朱一龙",
@@ -137,6 +196,7 @@
                 date:"2019-05-23 12:12:21",
                 contentText: "好看～～",
                 avatar:"https://i.loli.net/2017/08/21/599a521472424.jpg"
+
               },
               {
                 name:"王燕楠",
