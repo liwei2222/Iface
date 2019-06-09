@@ -37,7 +37,8 @@
         created(){
           var storage=window.localStorage;
           var name = storage.getItem("name");
-
+          var pic = storage.getItem("avatarUrl");
+          this.avatarUrl = pic;
           axios.get('http://localhost:8080/getComments', {
             params : {
               "name" : name
@@ -51,7 +52,7 @@
         },
         data(){
           return{
-            avatarUrl: require('../assets/avatar.png'),
+            avatarUrl: "",
             name: "Jack官方粉丝后援会",
             items:[
               {

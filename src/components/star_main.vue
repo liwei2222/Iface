@@ -150,6 +150,7 @@
               'Content-Type':'application/json;charset=utf-8'
             }})
             .then((response) => {
+              this.init();
               this.commentText = "";
             })
           this.file = [];
@@ -160,19 +161,23 @@
           console.log(fileList) // 整个input file 里的文件数组
         },
         sendComment() {
-          var sta = window.localStorage;
-          var userName = sta.getItem("name");
-          let data = new FormData();
-          data.append("context",this.commentText);
-          data.append("userName",userName);
-          data.append("starName",this.$route.query.name);
-          axios.post('http://localhost:8080/comment', data, {headers:{
-              'Content-Type':'application/json;charset=utf-8'
-            }})
-            .then((response) => {
-            this.init();
-            this.commentText = "";
-          })
+          if(this.file.length == 0) {
+            var sta = window.localStorage;
+            var userName = sta.getItem("name");
+            let data = new FormData();
+            data.append("context", this.commentText);
+            data.append("userName", userName);
+            data.append("starName", this.$route.query.name);
+            axios.post('http://localhost:8080/comment', data, {
+              headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+              }
+            })
+              .then((response) => {
+                this.init();
+                this.commentText = "";
+              })
+          }
           this.upload();
         }
       },

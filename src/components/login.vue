@@ -80,15 +80,19 @@
                 }
               }).then((response) => {
                 var res = response.data;
-                storage.setItem("name", this.formInline.user);
-                storage.setItem("password", this.formInline.password);
-                storage.setItem("signature", res.sign);
-                storage.setItem("avatarUrl", res.pic);
-                storage.setItem("sex", res.sex);
-                storage.setItem("registerTime", res.created);
-                console.log("login:"+JSON.stringify(storage.getItem("registerTime")))
-                this.$Message.success('Success!');
-                this.$router.push('/main');
+                if(res.pic == null || res.pic == undefined) {
+                  this.$Message.error('Fail!');
+                } else {
+                  storage.setItem("name", this.formInline.user);
+                  storage.setItem("password", this.formInline.password);
+                  storage.setItem("signature", res.sign);
+                  storage.setItem("avatarUrl", res.pic);
+                  storage.setItem("sex", res.sex);
+                  storage.setItem("registerTime", res.created);
+                  console.log("login:" + JSON.stringify(storage.getItem("registerTime")))
+                  this.$Message.success('Success!');
+                  this.$router.push('/main');
+                }
               }, error => {
               });
             }

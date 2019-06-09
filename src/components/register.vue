@@ -74,7 +74,7 @@
             if (valid) {
               axios.get('http://localhost:8080/register', {
                 params: {
-                  "name": this.formInline.user,
+                  "name": this.formInline.userName,
                   "password": this.formInline.password,
                   "gender": this.formInline.gender
                 }
